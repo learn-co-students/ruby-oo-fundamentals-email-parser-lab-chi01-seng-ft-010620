@@ -4,21 +4,17 @@
 # or whitespace (' ').
 require 'pry'
 class EmailAddressParser
-    
-    attr_accessor :email
 
-    def initialize(email)
-        @email = email
+    attr_accessor :email_addresses
+
+    def initialize(email_addresses)
+        @email_addresses = email_addresses
     end
+
     def parse
-        
-        split_string = @email.split
-
-       arr_of_emails_no_commas = split_string.map do |item|
-            item.tr(',' , '')
-        end
-
-        arr_of_emails_no_commas.uniq
-
+        @email_addresses = email_addresses.strip.split(/[\s,]+/).uniq
     end
 end
+
+lindsays = EmailAddressParser.new("lin@me.org, b@b.com mrperu.org")
+lindsays.email_addresses
